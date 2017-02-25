@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'snippets.apps.SnippetsConfig',
 ]
 
 MIDDLEWARE = [
@@ -76,10 +77,20 @@ WSGI_APPLICATION = 'LogInAPI.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+     'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'buetian14_samsad_django',
+    #     'USER': 'buetian14_samsad',
+    #     'PASSWORD': '1H2He3Li4Be5B?',
+    #     'HOST': '162.221.186.242',
+    #     'PORT': '3306'
+    # }
+
 }
 
 
@@ -136,6 +147,8 @@ REST_FRAMEWORK = {
         #'rest_framework.authentication.BasicAuthentication'
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',
-    )
+        # 'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAdminUser',
+    ),
+    'PAGE_SIZE': 10
 }
